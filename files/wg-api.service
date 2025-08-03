@@ -1,0 +1,16 @@
+[Unit]
+Description=WG-API WireGuard interface API service
+After=wg-quick@wg0.service
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/wg-api
+ExecStart=/opt/wg-api/wg-api --device=wg0 --listen=127.0.0.1:8081
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

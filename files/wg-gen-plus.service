@@ -1,0 +1,17 @@
+[Unit]
+Description=Wg-Gen-Plus WireGuard peer manager
+After=network-online.target
+Before=wg-quick@wg0.service
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/wg-gen-plus
+ExecStart=/opt/wg-gen-plus/wg-gen-plus --config /etc/wg-gen-plus/wg-gen-plus-wg0.conf
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
