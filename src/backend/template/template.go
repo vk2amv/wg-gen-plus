@@ -199,7 +199,7 @@ var (
 	clientTpl = `[Interface]
 Address = {{ StringsJoin .Client.Address ", " }}
 PrivateKey = {{ .Client.PrivateKey }}
-{{ if ne (len .Server.Dns) 0 -}}
+{{ if and (ne (len .Server.Dns) 0) .Client.UseRemoteDNS -}}
 DNS = {{ StringsJoin .Server.Dns ", " }}
 {{- end }}
 {{ if ne .Server.Mtu 0 -}}
